@@ -94,8 +94,8 @@ int main() {
 	SetConsoleCursorPosition(hConsole, startPos);
 	SET_DEFAULT_COLOR;
 
-	SetConsoleCP(1251);
-	SetConsoleOutputCP(1251);
+	SetConsoleCP(65001);
+	SetConsoleOutputCP(65001);
 	srand(static_cast<unsigned int>(time(0)));
 
 	//words dictionary with hand-made input, can be improved
