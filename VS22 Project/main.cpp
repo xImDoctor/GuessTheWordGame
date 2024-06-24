@@ -47,7 +47,7 @@ void StartMenu() {
 
 }
 
-void InGameCycle(const string* words, const short wordCount) {
+void InGameCycle(const string* words, const size_t wordCount) {
 
 	string wordly = words[rand() % wordCount], guess;
 	const short wordLenght = wordly.length();
@@ -107,15 +107,15 @@ int main() {
 		"тёплый", "холодный", "тоска", "радость", "печаль", "смех", "слёзы", "конец", "начало", "игра", "лига", "легенда", "бой", "хор", "хурма", "апельсин", "фейхуа", "яблоко",
 		"груша", "суши", "лемон", "нектарин", "витамин", "огонь", "нейромант", "некромант", "волшебство", "дружба"
 	};
-	const short wordCount = 100;
+	//const short wordCount = 100;
 
 	StartMenu();
-	InGameCycle(words, wordCount);
+	InGameCycle(words, words->size());
 
 	char restart;
 	cout << "\nХотите сыграть ещё?(y/n) "; cin >> restart; cout << endl;
 	if (restart == 'y')
-		InGameCycle(words, wordCount);
+		InGameCycle(words, words->size());
 	else cout << "\nДо встречи!" << endl;
 
 	system("pause>nul");
