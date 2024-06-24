@@ -50,7 +50,7 @@ void StartMenu() {
 void InGameCycle(const string* words, const size_t wordCount) {
 
 	string wordly = words[rand() % wordCount], guess;
-	const short wordLenght = wordly.length();
+	const size_t wordLenght = wordly.size();
 	const unsigned short maxAttempts = 6;
 	unsigned short attempts = maxAttempts;
 
@@ -94,9 +94,9 @@ int main() {
 	SetConsoleCursorPosition(hConsole, startPos);
 	SET_DEFAULT_COLOR;
 
-	SetConsoleCP(65001);
-	SetConsoleOutputCP(65001);
-	srand(static_cast<unsigned int>(time(0)));
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
+	srand(static_cast<unsigned int>(time(nullptr)));
 
 	//words dictionary with hand-made input, can be improved
 	const string words[] = {
@@ -107,15 +107,19 @@ int main() {
 		"тёплый", "холодный", "тоска", "радость", "печаль", "смех", "слёзы", "конец", "начало", "игра", "лига", "легенда", "бой", "хор", "хурма", "апельсин", "фейхуа", "яблоко",
 		"груша", "суши", "лемон", "нектарин", "витамин", "огонь", "нейромант", "некромант", "волшебство", "дружба"
 	};
-	//const short wordCount = 100;
+	const size_t wordCount = sizeof(words) / sizeof(const string);
+
+#ifdef _DEBUG
+	cout << "Кол-во слов: " << wordCount << endl;
+#endif
 
 	StartMenu();
-	InGameCycle(words, words->size());
+	InGameCycle(words, wordCount);
 
 	char restart;
 	cout << "\nХотите сыграть ещё?(y/n) "; cin >> restart; cout << endl;
 	if (restart == 'y')
-		InGameCycle(words, words->size());
+		InGameCycle(words, wordCount);
 	else cout << "\nДо встречи!" << endl;
 
 	system("pause>nul");
