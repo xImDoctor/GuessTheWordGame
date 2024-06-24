@@ -10,6 +10,8 @@
 #define SET_DEFAULT_COLOR SetConsoleTextColor(FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE)
 #define YELLOW_COLOR FOREGROUND_GREEN | FOREGROUND_RED | FOREGROUND_INTENSITY
 
+#define PLAY_AGAIN(restart) cout << "\nХотите сыграть ещё?(y/n) "; cin >> restart; cout << endl;
+
 using namespace std;
 
 void SetConsoleTextColor(int color) {
@@ -117,10 +119,12 @@ int main() {
 	InGameCycle(words, wordCount);
 
 	char restart;
-	cout << "\nХотите сыграть ещё?(y/n) "; cin >> restart; cout << endl;
-	if (restart == 'y')
+	PLAY_AGAIN(restart)
+	while (restart == 'y') {
 		InGameCycle(words, wordCount);
-	else cout << "\nДо встречи!" << endl;
+		PLAY_AGAIN(restart)
+	}
+	cout << "\nДо встречи!\nНажмите любую клавишу для завершения..." << endl;
 
 	system("pause>nul");
 	return 0;
